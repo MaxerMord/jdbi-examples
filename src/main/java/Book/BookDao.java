@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface BookDao {
     @SqlUpdate("""
-                    CREATE TABLE book(
+                                        CREATE TABLE book(
                                             isbn13 VARCHAR PRIMARY KEY,
                                             author VARCHAR NOT NULL,
                                             title VARCHAR NOT NULL,
@@ -24,10 +24,11 @@ public interface BookDao {
                                             publicationDate DATE NOT NULL,
                                             pages INTEGER NOT NULL,
                                             available BOOLEAN NOT NULL
+                                            )
             """)
     void creatTable();
 
-    @SqlUpdate("INSERT INTO book VALUES(:isbn13,:author,:title,:format,:publisher,:publicationDate,:pages,:available)")
+    @SqlUpdate("INSERT INTO book VALUES (:isbn13,:author,:title,:format,:publisher,:publicationDate,:pages,:available)")
     void insert(@BindBean Book book);
 
     @SqlQuery("SELECT * FROM book WHERE isbn13 =:isbn13")
